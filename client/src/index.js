@@ -17,8 +17,8 @@ const Root = () => {
     <Router>
       <Context.Provider value={{state, dispatch}}>
         <Switch>
-          {/* <ProtectedRoute exact path="/" component={App} /> */}
-          <Route exact path="/" component={App} />
+          <ProtectedRoute exact path="/" component={App} />
+          {/* <Route exact path="/" component={App} /> */}
           <Route path="/login" component={Splash} />
         </Switch>
       </Context.Provider>
