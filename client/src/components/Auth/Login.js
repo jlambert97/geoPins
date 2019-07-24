@@ -8,7 +8,6 @@ import { ME_QUERY } from '../../graphql/queries'
 
 const Login = ({ classes }) => {
   const { dispatch } = useContext(Context)
-
   const onSuccess = async googleUser => {
     try {
       const idToken = googleUser.getAuthResponse().id_token
@@ -17,6 +16,7 @@ const Login = ({ classes }) => {
       })
       const data = await client.request(ME_QUERY)
       dispatch({type: "LOGIN_USER", payload: data.authenticated})
+      dispatch({ type: "IS_LOGGED_IN", payload: googleUser.isSignedIn()})
     } catch (err) {
       onFailure(err)
     }
@@ -38,13 +38,14 @@ const Login = ({ classes }) => {
         Welcome
       </Typography>
       <GoogleLogin 
-      clientId="570591330068-b3h868cn5rc16ilomus9mvltavui7ddb.apps.googleusercontent.com"
-      onSuccess={onSuccess}
-      onFailure={onFailure}
-      theme="dark"
-      isSignedIn={true}/>
+        clientId="570591330068-b3h868cn5rc16ilomus9mvltavui7ddb.apps.googleusercontent.com"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        theme="dark"
+        isSignedIn={true}
+        buttonText="Login with Google"
+      />
     </div>) 
-  
 };
 
 const styles = {
