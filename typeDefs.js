@@ -27,6 +27,6 @@ module.exports = gql`
     }
 
     type Query {
-        me: User
+        authenticated: User
     }
 `
